@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerario EDC 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .gantt-container {
+            padding: 30px;
+            overflow-x: auto;
+        }
+        
+        .gantt-chart {
+            min-width: 800px;
+        }
+        
+        .timeline {
+            display: grid;
+            grid-template-columns: 200px repeat(5, 1fr);
+            gap: 0;
+            margin-bottom: 5px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .timeline-header {
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+        }
+        
+        .timeline-header:first-child {
+            text-align: left;
+        }
+        
+        .gantt-row {
+            display: grid;
+            grid-template-columns: 200px repeat(5, 1fr);
+            gap: 0;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+        
+        .task-label {
+            padding: 12px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95em;
+        }
+        
+        .task-bar-container {
+            position: relative;
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .task-bar {
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: visible;
+            padding: 0 10px;
+            text-align: center;
+        }
+        
+        .renta-auto {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .airbnb {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .edc {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .time-label {
+            position: absolute;
+            font-size: 0.75em;
+            background: rgba(0,0,0,0.7);
+            padding: 3px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        
+        .time-start {
+            left: 0;
+            top: -25px;
+        }
+        
+        .time-end {
+            right: 0;
+            top: -25px;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 30px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .notes {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 5px;
+        }
+        
+        .notes h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .notes ul {
+            color: #856404;
+            margin-left: 20px;
+        }
+        
+        .notes li {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .gantt-container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .legend {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Itinerario EDC México CDMX 2026</h1>
+            <p>Febrero 19 - 23, 2026</p>
+        </div>
+        
+        <div class="gantt-container">
+            <div class="gantt-chart">
+                <div class="timeline">
+                    <div class="timeline-header">Actividad</div>
+                    <div class="timeline-header">Mié 19</div>
+                    <div class="timeline-header">Vie 20</div>
+                    <div class="timeline-header">Sáb 21</div>
+                    <div class="timeline-header">Dom 22</div>
+                    <div class="timeline-header">Lun 23</div>
+                </div>
+                
+                <div class="gantt-row">
+                    <div class="task-label">🚗 Renta de Auto</div>
+                    <div class="task-bar-container" style="grid-column: span 5;">
+                        <div class="task-bar renta-auto" style="width: 100%;">
+                            <span class="time-label time-start">19 Feb - Recogida</span>
+                            Viaje y estancia
+                            <span class="time-label time-end">23 Feb - Devolución</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gantt-row">
+                    <div class="task-label">🏠 Airbnb</div>
+                    <div class="task-bar-container"></div>
+                    <div class="task-bar-container" style="grid-column: span 4;">
+                        <div class="task-bar airbnb" style="width: 85%;">
+                            <span class="time-label time-start">Vie 14:00 Check-in</span>
+                            Hospedaje
+                            <span class="time-label time-end">Lun 11:00 Check-out</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gantt-row">
+                    <div class="task-label">🎵 EDC Día 1</div>
+                    <div class="task-bar-container"></div>
+                    <div class="task-bar-container">
+                        <div class="task-bar edc" style="width: 50%; margin-left: 50%;">
+                            <span class="time-label time-start">15:00</span>
+                            EDC
+                            <span class="time-label time-end">01:00</span>
+                        </div>
+                    </div>
+                    <div class="task-bar-container"></div>
+                    <div class="task-bar-container"></div>
+                    <div class="task-bar-container"></div>
+                </div>
+                
+                <div class="gantt-row">
+                    <div class="task-label">🎵 EDC Día 2</div>
+                    <div class="task-bar-container"></div>
+                    <div class="task-bar-container"></div>
+                    <div class="task-bar-container">
+                        <div class="task-bar edc" style="width: 50%; margin-left: 50%;">
+                            <span class="time-label time-start">15:00</span>
+                            EDC
+                            <span class="time-label time-end">01:00</span>
+                        </div>
+                    </div>
+                    <div class="task-bar-container"></div>
+                    <div class="task-bar-container"></div>
+                </div>
+                
+                <div class="gantt-row">
+                    <div class="task-label">🎵 EDC Día 3</div>
+                    <div class="task-bar-container"></div>
+                    <div class="task-bar-container"></div>
+                    <div class="task-bar-container"></div>
+                    <div class="task-bar-container">
+                        <div class="task-bar edc" style="width: 50%; margin-left: 50%;">
+                            <span class="time-label time-start">15:00</span>
+                            EDC
+                            <span class="time-label time-end">01:00</span>
+                        </div>
+                    </div>
+                    <div class="task-bar-container"></div>
+                </div>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color renta-auto"></div>
+                    <span>Renta de Auto</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color airbnb"></div>
+                    <span>Airbnb</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color edc"></div>
+                    <span>EDC</span>
+                </div>
+            </div>
+            
+            <div class="notes">
+                <h3>📋 Notas Importantes:</h3>
+                <ul>
+                    <li><strong>Miércoles 19:</strong> Recoger el auto y viajar hacia CDMX</li>
+                    <li><strong>Viernes 20:</strong> Check-in Airbnb a las 14:00. EDC de 15:00 a 01:00</li>
+                    <li><strong>Sábado 21:</strong> EDC de 15:00 a 01:00 (día completo libre hasta las 15:00)</li>
+                    <li><strong>Domingo 22:</strong> Último día EDC de 15:00 a 01:00</li>
+                    <li><strong>Lunes 23:</strong> Check-out antes de las 11:00. Devolver el auto y regresar a casa</li>
+                    <li><strong>Tiempo libre:</strong> Mañanas del 20, 21, 22 y 23 (antes de las 15:00) - ideal para conocer CDMX</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
